@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fitness 500 | Your Community Gym in St Helens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ===================== RESET & ROOT ===================== */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; background:#0b0b0b; }
+:root {
+  --black: #0b0b0b;
+  --dark: #111213;
+  --card: #161718;
+  --border: #252628;
+  --accent: #00b8ff;
+  --accent2: #ffb800;
+  --text: #ececec;
+  --muted: #7a7c80;
+  --white: #ffffff;
+  --radius: 3px;
+}
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width:100%; display:block; }
+
+/* ===================== KEYFRAMES ===================== */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(30px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,184,255,0.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(0,184,255,0); }
+}
+
+/* ===================== UTILITY ===================== */
+.section-label {
+  display:inline-block;
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1rem;
+  position:relative;
+  padding-left:1.2rem;
+}
+.section-label::before {
+  content:'';
+  position:absolute;
+  left:0; top:50%;
+  transform:translateY(-50%);
+  width:0.5rem; height:2px;
+  background:var(--accent);
+}
+.section-title {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:clamp(2.4rem, 5vw, 4rem);
+  font-weight:900;
+  line-height:0.95;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+  margin-bottom:1rem;
+}
+.fade-in {
+  opacity:0;
+  transform:translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity:1;
+  transform:translateY(0);
+}
+.delay-1 { transition-delay:0.1s; }
+.delay-2 { transition-delay:0.2s; }
+.delay-3 { transition-delay:0.3s; }
+.delay-4 { transition-delay:0.4s; }
+.delay-5 { transition-delay:0.5s; }
+
+/* ===================== NAV ===================== */
+nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:1000;
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  background:rgba(11,11,11,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
+.nav-logo {
+  display:flex;
+  align-items:center;
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.85rem;
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--white);
+}
+.nav-logo span { color:var(--accent); }
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:2.2rem;
+  list-style:none;
+}
+.nav-links a {
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--muted);
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--white); }
+.nav-phone {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-size:0.85rem;
+  font-weight:600;
+  color:var(--muted);
+}
+.nav-phone svg { color:var(--accent); }
+.btn-nav {
+  background:var(--accent) !important;
+  color:var(--white) !important;
+  padding:0.5rem 1.3rem;
+  border-radius:var(--radius);
+  font-weight:700 !important;
+  letter-spacing:1px !important;
+  transition:background 0.2s, transform 0.2s !important;
+  white-space:nowrap;
+}
+.btn-nav:hover { background:#0099dd !important; transform:translateY(-1px); }
+.hamburger {
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  padding:4px;
+}
+.hamburger span { display:block; width:24px; height:2px; background:var(--white); transition:0.3s; }
+
+/* ===================== MOBILE MENU ===================== */
+.mobile-menu {
+  display:none;
+  position:fixed;
+  top:68px; left:0; right:0;
+  background:rgba(11,11,11,0.99);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:2rem 5%;
+  z-index:999;
+  flex-direction:column;
+  gap:1.5rem;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.6rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--text);
+  border-bottom:1px solid var(--border);
+  padding-bottom:1rem;
+  transition:color 0.2s;
+}
+.mobile-menu a:hover { color:var(--accent); }
+.mobile-menu .btn-primary { text-align:center; border:none; display:block; }
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  padding: 100px 5% 80px;
+  background: #0b0b0b;
+}
+.hero-bg {
+  position:absolute;
+  inset:0;
+  background: linear-gradient(135deg, #0b0b0b 0%, #121212 45%, #0b1218 100%);
+  z-index:0;
+}
+.hero-bg::after {
+  content:'';
+  position:absolute;
+  top:-10%; right:-5%;
+  width:55vw; height:110%;
+  background:linear-gradient(150deg, rgba(0,184,255,0.07) 0%, transparent 60%);
+  transform:skewX(-8deg);
+  z-index:0;
+}
+.hero-grid {
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:50px 50px;
+  pointer-events:none;
+  z-index:0;
+}
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:720px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:0.6rem;
+  background:rgba(0,184,255,0.12);
+  border:1px solid rgba(0,184,255,0.35);
+  color:var(--accent);
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  padding:0.45rem 1rem;
+  border-radius:2px;
+  margin-bottom:1.8rem;
+}
+.live-dot {
+  width:7px; height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  animation:pulse 2s infinite;
+}
+.hero h1 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:clamp(4.5rem, 12vw, 9rem);
+  font-weight:900;
+  text-transform:uppercase;
+  line-height:0.88;
+  letter-spacing:-2px;
+  margin-bottom:1.8rem;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+.hero h1 .highlight { color:var(--accent); }
+.hero h1 .outline {
+  -webkit-text-stroke:2px rgba(255,255,255,0.2);
+  color:transparent;
+}
+.hero-sub {
+  font-size:1.1rem;
+  font-weight:300;
+  color:var(--muted);
+  max-width:480px;
+  margin-bottom:2.5rem;
+  line-height:1.7;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+.hero-btns {
+  display:flex;
+  gap:1rem;
+  flex-wrap:wrap;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.btn-primary {
+  background:var(--accent);
+  color:var(--white);
+  padding:1rem 2.2rem;
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border:none;
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all 0.22s;
+  display:inline-block;
+}
+.btn-primary:hover { background:#0099dd; transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,184,255,0.3); }
+.btn-ghost {
+  background:transparent;
+  color:var(--white);
+  padding:1rem 2.2rem;
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all 0.22s;
+  display:inline-block;
+}
+.btn-ghost:hover { border-color:rgba(0,184,255,0.5); color:var(--accent); }
+.hero-stats {
+  position:absolute;
+  right:5%; bottom:10%;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
+  animation: fadeUp 0.8s ease 0.4s both;
+}
+.hero-stat { text-align:right; }
+.hero-stat-num {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:2.8rem;
+  font-weight:900;
+  color:var(--accent);
+  line-height:1;
+  display:block;
+}
+.hero-stat-label {
+  font-size:0.7rem;
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.hero-divider {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:2px;
+  background:linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+}
+
+/* ===================== TICKER ===================== */
+.ticker {
+  background:var(--accent);
+  overflow:hidden;
+  white-space:nowrap;
+  padding:0.6rem 0;
+  user-select:none;
+}
+.ticker-track {
+  display:inline-flex;
+  animation:ticker 22s linear infinite;
+}
+.ticker-item {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.9rem;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.95);
+  padding:0 2.5rem;
+  display:inline-flex;
+  align-items:center;
+  gap:2.5rem;
+}
+.ticker-item::after { content:'✦'; font-size:0.6rem; opacity:0.5; }
+
+/* ===================== FEATURES ===================== */
+.features { padding:7rem 5%; background:var(--dark); }
+.features-header {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:3.5rem;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.features-header p {
+  max-width:380px;
+  color:var(--muted);
+  font-size:0.95rem;
+  line-height:1.7;
+}
+.features-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+.feat-card {
+  background:var(--card);
+  padding:2.5rem 2rem;
+  position:relative;
+  overflow:hidden;
+  transition:background 0.25s;
+}
+.feat-card::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  width:100%; height:2px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.35s ease;
+}
+.feat-card:hover { background:#1a1b1c; }
+.feat-card:hover::after { transform:scaleX(1); }
+.feat-icon {
+  width:46px; height:46px;
+  border-radius:4px;
+  background:rgba(0,184,255,0.1);
+  border:1px solid rgba(0,184,255,0.2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem;
+  margin-bottom:1.6rem;
+}
+.feat-card h3 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.3rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  margin-bottom:0.6rem;
+}
+.feat-card p { font-size:0.88rem; color:var(--muted); line-height:1.7; }
+
+/* ===================== POPULAR TIMES ===================== */
+.popular-times { padding:7rem 5%; background:var(--dark); }
+.pt-day-tabs {
+  display:flex;
+  gap:0.5rem;
+  margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+.pt-tab {
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.85rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:0.5rem 1.2rem;
+  border-radius:3px;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.pt-tab:hover { border-color:var(--accent); color:var(--accent); }
+.pt-tab.active { background:var(--accent); border-color:var(--accent); color:var(--black); }
+.pt-chart { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:2rem; }
+.pt-chart.hidden { display:none; }
+.pt-bars {
+  display:flex;
+  align-items:flex-end;
+  gap:6px;
+  height:140px;
+  margin-bottom:1rem;
+}
+.pt-bar-wrap {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.4rem;
+  flex:1;
+  height:100%;
+  justify-content:flex-end;
+}
+.pt-bar {
+  width:100%;
+  height:var(--h);
+  background:rgba(0,184,255,0.35);
+  border-radius:3px 3px 0 0;
+  transition:height 0.5s ease, background 0.2s;
+  min-height:4px;
+}
+.pt-bar.peak { background:var(--accent); }
+.pt-bar-wrap:hover .pt-bar { background:var(--accent); }
+.pt-bar-wrap span {
+  font-size:0.65rem;
+  color:var(--muted);
+  white-space:nowrap;
+  font-weight:500;
+  letter-spacing:0.3px;
+}
+.pt-note {
+  font-size:0.85rem;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  padding-top:1rem;
+}
+.pt-note strong { color:var(--text); }
+@media(max-width:600px) {
+  .pt-bars { gap:3px; height:110px; }
+  .pt-bar-wrap span { font-size:0.55rem; }
+}
+
+/* ===================== ZONES ===================== */
+.zones { padding:7rem 5%; position:relative; background:var(--black); }
+.photo-grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  grid-template-rows:280px 280px;
+  gap:0.75rem;
+  margin-top:3rem;
+}
+.photo-tile {
+  position:relative;
+  overflow:hidden;
+  border-radius:6px;
+  cursor:default;
+  background:var(--card);
+  min-height:0;
+}
+.photo-tile.tall { grid-row: span 2; }
+.photo-tile img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  position:absolute;
+  inset:0;
+  transition:transform 0.5s ease, filter 0.5s ease;
+  filter:brightness(0.82) saturate(0.9);
+}
+.photo-tile:hover img {
+  transform:scale(1.06);
+  filter:brightness(0.6) saturate(1.1);
+}
+.photo-tile-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  pointer-events:none;
+  transition:background 0.4s ease;
+}
+.photo-tile:hover .photo-tile-overlay {
+  background:linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,184,255,0.08) 60%, transparent 100%);
+}
+.photo-tile-label {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  padding:1.2rem 1.4rem;
+  z-index:2;
+}
+.photo-tile-label h3 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.3rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--white);
+  margin-bottom:0.2rem;
+  text-shadow:0 2px 8px rgba(0,0,0,0.5);
+}
+.photo-tile-label p {
+  font-size:0.78rem;
+  color:rgba(255,255,255,0.7);
+  font-weight:400;
+  text-shadow:0 1px 4px rgba(0,0,0,0.6);
+  opacity:0;
+  transform:translateY(6px);
+  transition:all 0.35s ease;
+}
+.photo-tile:hover .photo-tile-label p {
+  opacity:1;
+  transform:translateY(0);
+}
+.photo-tile-tag {
+  position:absolute;
+  top:1rem; left:1rem;
+  background:var(--accent);
+  color:var(--white);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:0.25rem 0.6rem;
+  border-radius:2px;
+  z-index:2;
+}
+@media(max-width:768px) {
+  .photo-grid { grid-template-columns:1fr 1fr; }
+  .photo-tile.tall { grid-row:span 1; }
+}
+@media(max-width:480px) {
+  .photo-grid { grid-template-columns:1fr; }
+}
+
+/* ===================== MEMBERSHIPS ===================== */
+.memberships { padding:7rem 5%; background:var(--dark); position:relative; overflow:hidden; }
+.plans-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+  gap:1.5rem;
+  margin-top:3.5rem;
+  align-items:start;
+}
+.plan-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:2.5rem 2rem;
+  position:relative;
+  transition:all 0.28s;
+}
+.plan-card:hover { border-color:rgba(0,184,255,0.4); transform:translateY(-4px); }
+.plan-card.featured { border-color:var(--accent); background:#0d1820; }
+.plan-badge {
+  position:absolute;
+  top:-1px; right:1.5rem;
+  background:var(--accent);
+  color:var(--white);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:0.3rem 0.8rem;
+  border-radius:0 0 3px 3px;
+}
+.plan-name {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.5rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:0.3rem;
+}
+.plan-price {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:2.2rem;
+  font-weight:900;
+  color:var(--accent);
+  line-height:1;
+  margin-bottom:0.2rem;
+}
+.plan-price span { font-size:0.95rem; font-weight:400; color:var(--muted); }
+.plan-desc {
+  font-size:0.85rem;
+  color:var(--muted);
+  margin-bottom:1.8rem;
+  padding-bottom:1.8rem;
+  border-bottom:1px solid var(--border);
+}
+.plan-features { list-style:none; margin-bottom:2rem; }
+.plan-features li {
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+  font-size:0.88rem;
+  padding:0.45rem 0;
+  color:var(--muted);
+}
+.plan-features li::before { content:'✓'; color:var(--accent); font-weight:700; flex-shrink:0; }
+.plan-cta {
+  display:block;
+  text-align:center;
+  background:transparent;
+  border:1.5px solid var(--border);
+  color:var(--text);
+  padding:0.85rem;
+  border-radius:var(--radius);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.95rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:all 0.22s;
+}
+.plan-cta:hover { border-color:var(--accent); color:var(--accent); }
+.plan-card.featured .plan-cta { background:var(--accent); border-color:var(--accent); color:var(--white); }
+.plan-card.featured .plan-cta:hover { background:#0099dd; }
+
+/* ===================== CLASSES ===================== */
+.classes { padding:7rem 5%; background:var(--black); }
+.classes-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+  margin-top:3rem;
+}
+.class-visual { position:relative; }
+.class-image-box {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  aspect-ratio:4/3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:relative;
+}
+.class-image-box svg { width:80px; height:80px; color:rgba(0,184,255,0.2); }
+.class-badge-overlay {
+  position:absolute;
+  bottom:1.5rem; left:1.5rem;
+  background:var(--accent);
+  color:var(--white);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  padding:0.5rem 1rem;
+  border-radius:2px;
+}
+.class-accent-box {
+  position:absolute;
+  top:-1.5rem; right:-1.5rem;
+  width:100px; height:100px;
+  border:2px solid rgba(0,184,255,0.2);
+  border-radius:4px;
+  z-index:-1;
+}
+.class-info h3 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:2.2rem;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  line-height:1.05;
+}
+.class-info p { font-size:0.95rem; color:var(--muted); line-height:1.7; margin-bottom:1.2rem; }
+.class-time-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  background:rgba(0,184,255,0.1);
+  border:1px solid rgba(0,184,255,0.3);
+  color:var(--accent);
+  padding:0.5rem 1rem;
+  border-radius:2px;
+  font-size:0.82rem;
+  font-weight:600;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.class-guests {
+  display:flex;
+  align-items:flex-start;
+  gap:0.7rem;
+  padding:1rem 1.2rem;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:4px;
+  font-size:0.85rem;
+  color:var(--muted);
+}
+.class-guests svg { color:var(--accent); flex-shrink:0; margin-top:2px; }
+.class-guests strong { color:var(--text); }
+
+/* ===================== LADIES ZONE ===================== */
+.ladies { padding:7rem 5%; position:relative; overflow:hidden; background:var(--black); }
+.ladies-inner {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+}
+.ladies-text p { font-size:0.95rem; color:var(--muted); line-height:1.75; margin-bottom:1.5rem; }
+.ladies-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  background:rgba(0,184,255,0.08);
+  border:1px solid rgba(0,184,255,0.25);
+  color:var(--accent);
+  padding:0.4rem 0.9rem;
+  border-radius:2px;
+  font-size:0.78rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.ladies-visual {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+.ladies-block {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:2rem 1.5rem;
+  text-align:center;
+  transition:border-color 0.25s;
+}
+.ladies-block:hover { border-color:rgba(0,184,255,0.4); }
+.ladies-block.full { grid-column:1/-1; }
+.ladies-block-icon { font-size:1.8rem; margin-bottom:0.7rem; display:block; }
+.ladies-block h4 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:0.3rem;
+}
+.ladies-block p { font-size:0.8rem; color:var(--muted); }
+
+/* ===================== TESTIMONIALS ===================== */
+/* ===================== GOOGLE REVIEWS ===================== */
+.reviews { padding:7rem 5%; background:var(--dark); }
+.reviews-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:2rem;
+  margin-bottom:3rem;
+}
+.reviews-summary {
+  display:flex;
+  align-items:center;
+  gap:2rem;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.8rem 2.2rem;
+  flex-wrap:wrap;
+  gap:1.5rem;
+}
+.reviews-score {
+  text-align:center;
+}
+.reviews-score-num {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:4rem;
+  font-weight:900;
+  color:var(--white);
+  line-height:1;
+  display:block;
+}
+.reviews-score-stars {
+  color:#fbbc04;
+  font-size:1.2rem;
+  letter-spacing:2px;
+  display:block;
+  margin:0.3rem 0;
+}
+.reviews-score-count {
+  font-size:0.78rem;
+  color:var(--muted);
+}
+.reviews-bars {
+  flex:1;
+  min-width:180px;
+  display:flex;
+  flex-direction:column;
+  gap:0.4rem;
+}
+.review-bar-row {
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  font-size:0.75rem;
+  color:var(--muted);
+}
+.review-bar-row span:first-child { width:0.8rem; text-align:right; flex-shrink:0; }
+.review-bar-track {
+  flex:1;
+  height:6px;
+  background:var(--border);
+  border-radius:3px;
+  overflow:hidden;
+}
+.review-bar-fill {
+  height:100%;
+  background:#fbbc04;
+  border-radius:3px;
+  transition:width 1s ease;
+}
+.google-badge {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.4rem;
+  flex-shrink:0;
+}
+.google-badge svg { width:36px; height:36px; }
+.google-badge span {
+  font-size:0.7rem;
+  color:var(--muted);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.reviews-write {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:0.5rem 1.1rem;
+  border-radius:3px;
+  font-size:0.8rem;
+  font-weight:600;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:all 0.2s;
+  text-decoration:none;
+}
+.reviews-write:hover { border-color:var(--accent); color:var(--accent); }
+.reviews-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:1.2rem;
+}
+.review-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.6rem;
+  transition:border-color 0.25s, transform 0.25s;
+  position:relative;
+}
+.review-card:hover { border-color:rgba(251,188,4,0.4); transform:translateY(-3px); }
+.review-card-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:1rem;
+}
+.review-author {
+  display:flex;
+  align-items:center;
+  gap:0.7rem;
+}
+.review-avatar {
+  width:38px; height:38px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Barlow Condensed', sans-serif;
+  font-weight:700;
+  font-size:1rem;
+  color:#fff;
+  flex-shrink:0;
+  font-size:0.95rem;
+}
+.review-name { font-size:0.88rem; font-weight:600; color:var(--text); }
+.review-date { font-size:0.72rem; color:var(--muted); margin-top:0.1rem; }
+.review-google-icon { flex-shrink:0; opacity:0.6; }
+.review-stars { color:#fbbc04; font-size:0.9rem; letter-spacing:1px; margin-bottom:0.8rem; }
+.review-text { font-size:0.88rem; color:var(--muted); line-height:1.7; }
+@media(max-width:600px) {
+  .reviews-summary { flex-direction:column; align-items:flex-start; }
+  .reviews-grid { grid-template-columns:1fr; }
+}
+
+/* ===================== HOURS ===================== */
+.hours { padding:7rem 5%; background:var(--black); }
+.hours-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:start;
+  margin-top:3rem;
+}
+.hours-table { border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.hours-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.9rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  transition:background 0.2s;
+}
+.hours-row:last-child { border-bottom:none; }
+.hours-row:hover { background:rgba(255,255,255,0.03); }
+.hours-row.today { background:rgba(0,184,255,0.07); }
+.hours-day { font-size:0.9rem; font-weight:500; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; }
+.hours-time { font-family:'Barlow Condensed', sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.5px; }
+.today-tag {
+  font-size:0.65rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--accent);
+  background:rgba(0,184,255,0.12);
+  padding:0.2rem 0.5rem;
+  border-radius:2px;
+}
+.info-cards { display:flex; flex-direction:column; gap:1.2rem; }
+.info-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:1.8rem;
+  transition:border-color 0.25s;
+}
+.info-card:hover { border-color:rgba(0,184,255,0.3); }
+.info-card-icon { font-size:1.4rem; margin-bottom:0.8rem; display:block; }
+.info-card h4 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  margin-bottom:0.4rem;
+}
+.info-card p { font-size:0.88rem; color:var(--muted); line-height:1.65; }
+.info-card a { color:var(--muted); }
+.info-card a:hover { color:var(--accent); }
+
+/* ===================== CTA STRIP ===================== */
+.cta-strip {
+  padding:5rem 5%;
+  background:var(--accent);
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.cta-strip::before {
+  content:'GET FIT';
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:14rem;
+  font-weight:900;
+  color:rgba(255,255,255,0.06);
+  letter-spacing:-5px;
+  white-space:nowrap;
+  pointer-events:none;
+}
+.cta-strip h2 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:clamp(2.5rem, 5vw, 4rem);
+  font-weight:900;
+  text-transform:uppercase;
+  color:var(--white);
+  margin-bottom:0.8rem;
+  position:relative;
+}
+.cta-strip p { font-size:1.05rem; color:rgba(255,255,255,0.8); margin-bottom:2rem; position:relative; }
+.btn-white {
+  background:var(--white);
+  color:var(--accent);
+  padding:1rem 2.5rem;
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:1.1rem;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  border-radius:var(--radius);
+  display:inline-block;
+  transition:all 0.22s;
+  position:relative;
+}
+.btn-white:hover { background:#f0f0f0; transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+.cta-strip-extra { display:block; margin-top:1.2rem; color:rgba(255,255,255,0.7); font-size:0.9rem; position:relative; }
+
+/* ===================== FOOTER ===================== */
+footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5% 2rem; }
+.footer-grid {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:3rem;
+  margin-bottom:3rem;
+}
+.footer-logo { font-family:'Barlow Condensed', sans-serif; font-size:2rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--white); margin-bottom:1rem; display:block; }
+.footer-logo span { color:var(--accent); }
+.footer-brand p { font-size:0.88rem; color:var(--muted); line-height:1.7; max-width:280px; margin-bottom:1.5rem; }
+.footer-social { display:flex; gap:0.8rem; }
+.social-btn {
+  width:38px; height:38px;
+  border:1px solid var(--border);
+  border-radius:4px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted);
+  transition:all 0.2s;
+}
+.social-btn:hover { border-color:var(--accent); color:var(--accent); }
+.footer-col h5 {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.8rem;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:1.2rem;
+}
+.footer-col ul { list-style:none; }
+.footer-col ul li { padding:0.3rem 0; font-size:0.88rem; color:var(--muted); }
+.footer-col ul li a { color:var(--muted); transition:color 0.2s; }
+.footer-col ul li a:hover { color:var(--accent); }
+.footer-bottom {
+  border-top:1px solid var(--border);
+  padding-top:1.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.footer-bottom p { font-size:0.78rem; color:var(--muted); }
+.footer-bottom a { color:var(--muted); }
+.footer-bottom a:hover { color:var(--accent); }
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:900px) {
+  .nav-links, .nav-phone { display:none; }
+  .hamburger { display:flex; }
+  .hero-stats { display:none; }
+  .classes-layout, .hours-layout, .ladies-inner { grid-template-columns:1fr; gap:2.5rem; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:2rem; }
+  .ladies-visual { grid-template-columns:1fr 1fr; }
+  .photo-grid { grid-template-columns:1fr 1fr; grid-template-rows:none; }
+  .photo-tile { height:220px; }
+  .photo-tile.tall { grid-row:span 1; height:220px; }
+  .photo-tile[style*="grid-column"] { grid-column:auto !important; }
+  .features-grid { grid-template-columns:1fr 1fr; }
+  .testi-grid, .reviews-grid { grid-template-columns:1fr 1fr; }
+  .pt-bars { gap:4px; }
+  .zones-grid { grid-template-columns:repeat(3, 1fr); }
+}
+@media(max-width:600px) {
+  /* Typography */
+  .hero h1 { font-size:3rem; letter-spacing:-1px; }
+  .section-title { font-size:2.2rem; }
+
+  /* Hero */
+  .hero { padding:90px 5% 60px; }
+  .hero-bg::after { display:none; }
+  .hero-btns { flex-direction:column; }
+  .hero-btns .btn-primary, .hero-btns .btn-ghost { text-align:center; }
+
+  /* Nav */
+  nav { padding:0 4%; }
+
+  /* Sections padding */
+  .features, .zones, .memberships, .classes, .ladies,
+  .testimonials, .reviews, .hours, .popular-times { padding:4rem 4%; }
+
+  /* Grids → single column */
+  .photo-grid { grid-template-columns:1fr; grid-template-rows:none; }
+  .photo-tile { height:200px; }
+  .photo-tile.tall { grid-row:span 1; height:200px; }
+  .photo-tile[style*="grid-column"] { grid-column:auto !important; }
+  .features-grid { grid-template-columns:1fr; }
+  .plans-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .ladies-visual { grid-template-columns:1fr; }
+  .testi-grid, .reviews-grid { grid-template-columns:1fr; }
+  .features-header { flex-direction:column; align-items:flex-start; }
+
+  /* Popular times */
+  .pt-bars { gap:3px; height:100px; }
+  .pt-bar-wrap span { font-size:0.55rem; }
+  .pt-day-tabs { gap:0.3rem; }
+  .pt-tab { padding:0.4rem 0.7rem; font-size:0.75rem; }
+
+  /* CTA */
+  .cta-strip { padding:4rem 4%; }
+  .cta-strip::before { display:none; }
+  .cta-strip h2 { font-size:2.2rem; }
+
+  /* Reviews summary */
+  .reviews-summary { flex-direction:column; align-items:flex-start; gap:1.2rem; }
+  .reviews-header { flex-direction:column; align-items:flex-start; gap:1rem; }
+
+  /* Hours */
+  .hours-row { padding:0.8rem 1rem; }
+
+  /* Footer */
+  .footer-bottom { flex-direction:column; text-align:center; gap:0.5rem; }
+}
+@media(max-width:380px) {
+  .hero h1 { font-size:2.5rem; }
+  .photo-grid { grid-template-columns:1fr; }
+  .pt-tab { padding:0.35rem 0.5rem; font-size:0.7rem; letter-spacing:0.5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo"><span style="color:#ffffff;">Fitness</span><span style="color:var(--accent);font-weight:700;">500</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">About</a></li>
+    <li><a href="#zones">Facilities</a></li>
+    <li><a href="#memberships">Memberships</a></li>
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#contact" class="btn-nav">Join Now</a></li>
+  </ul>
+  <div class="nav-phone">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    01744 755 334
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="toggleMenu()">About</a>
+  <a href="#zones" onclick="toggleMenu()">Facilities</a>
+  <a href="#memberships" onclick="toggleMenu()">Memberships</a>
+  <a href="#classes" onclick="toggleMenu()">Classes</a>
+  <a href="#hours" onclick="toggleMenu()">Hours</a>
+  <a href="#contact" class="btn-primary" onclick="toggleMenu()">Join Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="live-dot"></span>
+      St Helens · WA9 5JD · Open Now
+    </div>
+    <h1>
+      Train<br>
+      <span class="highlight">Harder.</span><br>
+      <span class="outline">Get Results.</span>
+    </h1>
+    <p class="hero-sub">Your local, fully-equipped community gym in St Helens. From complete beginners to advanced athletes — we've got everything you need to reach your goals.</p>
+    <div class="hero-btns">
+      <a href="#memberships" class="btn-primary">View Memberships</a>
+      <a href="#hours" class="btn-ghost">Opening Hours</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">5</span>
+      <span class="hero-stat-label">Dedicated Zones</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6AM</span>
+      <span class="hero-stat-label">Weekday Open</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">★★★★★</span>
+      <span class="hero-stat-label">Community Gym</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Cardio Zone</span>
+    <span class="ticker-item">Resistance Machines</span>
+    <span class="ticker-item">Free Weights</span>
+    <span class="ticker-item">Ladies Only Zone</span>
+    <span class="ticker-item">Freestyle Zone</span>
+    <span class="ticker-item">Circuit Training</span>
+    <span class="ticker-item">Spin Bikes</span>
+    <span class="ticker-item">No Contract Options</span>
+    <span class="ticker-item">Cardio Zone</span>
+    <span class="ticker-item">Resistance Machines</span>
+    <span class="ticker-item">Free Weights</span>
+    <span class="ticker-item">Ladies Only Zone</span>
+    <span class="ticker-item">Freestyle Zone</span>
+    <span class="ticker-item">Circuit Training</span>
+    <span class="ticker-item">Spin Bikes</span>
+    <span class="ticker-item">No Contract Options</span>
+  </div>
+</div>
+
+<!-- FEATURES / ABOUT -->
+<section class="features" id="features">
+  <div class="features-header fade-in">
+    <div>
+      <p class="section-label">Why Fitness 500</p>
+      <h2 class="section-title">More Than<br>Just a Gym</h2>
+    </div>
+    <p>Located just off the St Helens Linkway (next to Screwfix), we're a no-nonsense community gym that's been fully refurbished with the latest cardio and resistance equipment. Friendly, experienced staff on hand every session.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card fade-in">
+      <div class="feat-icon">🏋️</div>
+      <h3>Modern Equipment</h3>
+      <p>Recently refurbished with the latest cardio and resistance machines — everything you need to hit your goals.</p>
+    </div>
+    <div class="feat-card fade-in delay-1">
+      <div class="feat-icon">👥</div>
+      <h3>Expert Staff</h3>
+      <p>Experienced male and female staff always on hand to support you — whether you're day one or year five.</p>
+    </div>
+    <div class="feat-card fade-in delay-2">
+      <div class="feat-icon">📍</div>
+      <h3>Easy Access</h3>
+      <p>Just off the St Helens Linkway, next to Screwfix. Accessible location with free on-site parking.</p>
+    </div>
+    <div class="feat-card fade-in delay-3">
+      <div class="feat-icon">💜</div>
+      <h3>Ladies Only Zone</h3>
+      <p>One of the very few gyms in St Helens to offer a dedicated ladies-only fitness area for comfortable, confident training.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR TIMES -->
+<section class="popular-times">
+  <p class="section-label fade-in">Live Insights</p>
+  <h2 class="section-title fade-in">Popular<br>Times</h2>
+  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;margin-bottom:2.5rem;">Plan your visit around quieter periods or join the buzz at peak hours. Based on typical weekly patterns.</p>
+
+  <div class="pt-days fade-in">
+    <div class="pt-day-tabs">
+      <button class="pt-tab active" onclick="showDay('mon',this)">Mon</button>
+      <button class="pt-tab" onclick="showDay('tue',this)">Tue</button>
+      <button class="pt-tab" onclick="showDay('wed',this)">Wed</button>
+      <button class="pt-tab" onclick="showDay('thu',this)">Thu</button>
+      <button class="pt-tab" onclick="showDay('fri',this)">Fri</button>
+      <button class="pt-tab" onclick="showDay('sat',this)">Sat</button>
+      <button class="pt-tab" onclick="showDay('sun',this)">Sun</button>
+    </div>
+
+    <!-- MON -->
+    <div class="pt-chart" id="pt-mon">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:90%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
+    </div>
+
+    <!-- TUE -->
+    <div class="pt-chart hidden" id="pt-tue">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
+    </div>
+
+    <!-- WED -->
+    <div class="pt-chart hidden" id="pt-wed">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
+    </div>
+
+    <!-- THU -->
+    <div class="pt-chart hidden" id="pt-thu">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:88%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
+    </div>
+
+    <!-- FRI -->
+    <div class="pt-chart hidden" id="pt-fri">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>4–5pm</strong></p>
+    </div>
+
+    <!-- SAT -->
+    <div class="pt-chart hidden" id="pt-sat">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:10%"></div><span>2pm</span></div>
+      </div>
+      <p class="pt-note">Busiest for <strong>Circuit Class at 7:30am</strong> · Closes 3pm</p>
+    </div>
+
+    <!-- SUN -->
+    <div class="pt-chart hidden" id="pt-sun">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:15%"></div><span>1pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>9am</strong> · Closes 2pm</p>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<section class="zones" id="zones">
+  <p class="section-label fade-in">Facilities</p>
+  <h2 class="section-title fade-in">5 Dedicated<br>Training Zones</h2>
+  <p class="fade-in" style="color:var(--muted);max-width:500px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;">Everything under one roof. Burn calories, build strength, or train in a comfortable private space — we have the zone for it.</p>
+
+  <div class="photo-grid fade-in">
+
+    <!-- Tile 1: Gym Floor — tall left column -->
+    <div class="photo-tile tall">
+      <span class="photo-tile-tag">The Gym</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500_3175.JPG"
+        alt="Fitness 500 gym floor"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Fitness 500 Gym</h3>
+        <p>Fully refurbished with the latest equipment</p>
+      </div>
+    </div>
+
+    <!-- Tile 2: Resistance Machines — top middle -->
+    <div class="photo-tile">
+      <span class="photo-tile-tag">Zone 1</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500_3322.jpg"
+        alt="Resistance machines"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Resistance Machines</h3>
+        <p>Full range of cable &amp; pin-loaded machines</p>
+      </div>
+    </div>
+
+    <!-- Tile 3: Free Weights & Resistance — top right -->
+    <div class="photo-tile">
+      <span class="photo-tile-tag">Zone 2</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500-gym-3190.jpg"
+        alt="Resistance machines and free weights"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Free Weights Zone</h3>
+        <p>Dumbbells, barbells &amp; benches</p>
+      </div>
+    </div>
+
+    <!-- Tile 4: Spin Bikes — bottom middle -->
+    <div class="photo-tile">
+      <span class="photo-tile-tag">Zone 3</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500_3182.JPG"
+        alt="Spin bikes"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Spin Bikes</h3>
+        <p>Dedicated spinning area for intense cardio sessions</p>
+      </div>
+    </div>
+
+    <!-- Tile 5: Ladies Only — tall right column -->
+    <div class="photo-tile tall">
+      <span class="photo-tile-tag" style="background:#a855f7;">Ladies Only</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500_3179.JPG"
+        alt="Ladies only fitness zone"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Ladies Only Zone</h3>
+        <p>Exclusively for female members — comfortable &amp; private</p>
+      </div>
+    </div>
+
+    <!-- Tile 6: Circuit Training — bottom middle -->
+    <div class="photo-tile" style="grid-column:2/3;">
+      <span class="photo-tile-tag">Classes</span>
+      <img
+        src="http://www.fitness500.co.uk/images/fitness-500-gym-3191.jpg"
+        alt="High-intensity circuit training class"
+        loading="lazy"
+      />
+      <div class="photo-tile-overlay"></div>
+      <div class="photo-tile-label">
+        <h3>Circuit Training</h3>
+        <p>Saturday 7:30am — non-members welcome!</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MEMBERSHIPS -->
+<section class="memberships" id="memberships">
+  <p class="section-label fade-in">Pricing</p>
+  <h2 class="section-title fade-in">Simple,<br>Honest Pricing</h2>
+  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;">No hidden fees, no confusing tiers. Just great value gym membership. Call us or pop in to discuss the right plan for you.</p>
+  <div class="plans-grid">
+    <div class="plan-card featured fade-in">
+      <div class="plan-badge">Most Popular</div>
+      <p class="plan-name">Full Membership</p>
+      <p class="plan-price">£210<span>&ensp;/ one off payment</span></p>
+      <p class="plan-desc" style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border);"><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text);margin-bottom:0.3rem;">Pay Monthly</span><strong style="color:var(--text);">£19.99 / month for 12 months</strong>.</p>
+      <p class="plan-desc">Our best-value option. Unlimited access 7 days a week with every perk included.</p>
+      <ul class="plan-features">
+        <li>Unlimited gym access, every day</li>
+        <li>All 5 training zones</li>
+        <li>Saturday circuit class included</li>
+        <li>Ladies only zone</li>
+        <li>Staff advice &amp; support</li>
+        <li>Spin &amp; full cardio suite</li>
+      </ul>
+      <a href="tel:01744755334" class="plan-cta">Call to Join Today</a>
+    </div>
+    <div class="plan-card fade-in delay-1">
+      <div class="plan-badge" style="background:var(--accent2);color:#111;">Great Savings</div>
+      <p class="plan-name">Couple's Membership</p>
+      <p class="plan-price">Better Together<span>&ensp;/ direct debit</span></p>
+      <p class="plan-desc">Train together, save together. Full access for two — the perfect way to keep each other motivated.</p>
+      <ul class="plan-features">
+        <li>Unlimited access for 2 members</li>
+        <li>All 5 training zones included</li>
+        <li>Saturday circuit class for both</li>
+        <li>Ladies only zone access</li>
+        <li>Staff advice &amp; support</li>
+        <li>Spin &amp; full cardio suite</li>
+      </ul>
+      <a href="tel:01744755334" class="plan-cta">Call to Enquire</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section class="classes" id="classes">
+  <p class="section-label fade-in">Classes</p>
+  <h2 class="section-title fade-in">Push Your<br>Limits Together</h2>
+  <div class="classes-layout">
+    <div class="class-visual fade-in">
+      <div class="class-image-box">
+        <!-- Illustrated barbell SVG icon as placeholder -->
+        <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="34" width="100" height="12" rx="6" stroke="currentColor" stroke-width="3"/>
+          <rect x="2" y="26" width="14" height="28" rx="4" stroke="currentColor" stroke-width="3"/>
+          <rect x="104" y="26" width="14" height="28" rx="4" stroke="currentColor" stroke-width="3"/>
+          <circle cx="60" cy="40" r="8" stroke="currentColor" stroke-width="2.5"/>
+        </svg>
+        <div class="class-badge-overlay">Saturdays · 7:30 – 8:30am</div>
+      </div>
+      <div class="class-accent-box"></div>
+    </div>
+    <div class="class-info fade-in delay-2">
+      <div class="class-time-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Every Saturday · 7:30am – 8:30am
+      </div>
+      <h3>High-Intensity Circuit Training</h3>
+      <p>Our popular Saturday morning circuit class is open to all fitness levels. Push through a structured, high-energy session guided by our experienced instructors. Build endurance, burn calories, and have fun doing it.</p>
+      <p>Whether you're a member or not, everyone is welcome to join. No booking required — just show up ready to work hard.</p>
+      <div class="class-guests">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        <span><strong>Non-members welcome!</strong> Come along and give it a try before committing to a membership — no pressure, just a great workout.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LADIES ZONE -->
+<section class="ladies">
+  <div class="ladies-inner">
+    <div class="ladies-text fade-in">
+      <p class="section-label">Women's Fitness</p>
+      <h2 class="section-title">Ladies Only<br>Fitness Zone</h2>
+      <p>We're proud to be one of very few gyms in St Helens to offer a fully dedicated ladies-only fitness area. Train on your terms, in a space designed with your comfort in mind.</p>
+      <p>Equipped with cardio machines, resistance equipment and everything you need for a full workout — completely private and exclusively for female members.</p>
+      <span class="ladies-tag">✦ Exclusively for Female Members</span>
+    </div>
+    <div class="ladies-visual fade-in delay-2">
+      <div class="ladies-block full">
+        <span class="ladies-block-icon">🔒</span>
+        <h4>Fully Private Zone</h4>
+        <p>A completely separated area just for women — comfortable, safe, and supportive from day one.</p>
+      </div>
+      <div class="ladies-block">
+        <span class="ladies-block-icon">🚴</span>
+        <h4>Cardio Equipment</h4>
+        <p>Bikes, treadmills &amp; more inside the zone.</p>
+      </div>
+      <div class="ladies-block">
+        <span class="ladies-block-icon">🏋️</span>
+        <h4>Resistance Machines</h4>
+        <p>Tone and build at your own pace.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<section class="reviews">
+  <div class="reviews-header fade-in">
+    <div>
+      <p class="section-label">Google Reviews</p>
+      <h2 class="section-title">What Our<br>Members Say</h2>
+    </div>
+    <a href="https://search.google.com/local/reviews?placeid=ChIJ7QhG2y1xe0gRfCRVFJi2bnI" target="_blank" class="reviews-write">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Write a Review
+    </a>
+  </div>
+
+  <!-- Score Summary -->
+  <div class="reviews-summary fade-in" style="margin-bottom:2.5rem;">
+    <div class="reviews-score">
+      <span class="reviews-score-num">4.8</span>
+      <span class="reviews-score-stars">★★★★★</span>
+      <span class="reviews-score-count">Based on Google Reviews</span>
+    </div>
+    <div class="reviews-bars">
+      <div class="review-bar-row"><span>5</span><div class="review-bar-track"><div class="review-bar-fill" style="width:85%"></div></div></div>
+      <div class="review-bar-row"><span>4</span><div class="review-bar-track"><div class="review-bar-fill" style="width:10%"></div></div></div>
+      <div class="review-bar-row"><span>3</span><div class="review-bar-track"><div class="review-bar-fill" style="width:3%"></div></div></div>
+      <div class="review-bar-row"><span>2</span><div class="review-bar-track"><div class="review-bar-fill" style="width:1%"></div></div></div>
+      <div class="review-bar-row"><span>1</span><div class="review-bar-track"><div class="review-bar-fill" style="width:1%"></div></div></div>
+    </div>
+    <div class="google-badge">
+      <!-- Google G logo SVG -->
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+      </svg>
+      <span>Google</span>
+    </div>
+  </div>
+
+  <!-- Review Cards -->
+  <div class="reviews-grid">
+
+    <div class="review-card fade-in">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#4285F4;">GS</div>
+          <div>
+            <p class="review-name">Gary S.</p>
+            <p class="review-date">2 weeks ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Excellent gym. Easily the best in St Helens. Great staff, great community feel. Has all the gear you could need and the owner really knows his members. A great motivator.</p>
+    </div>
+
+    <div class="review-card fade-in delay-1">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#34A853;">CW</div>
+          <div>
+            <p class="review-name">Claire W.</p>
+            <p class="review-date">1 month ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Great gym, friendly staff and members. It has a brilliant women's section too which was exactly what I needed. Fully recommend to anyone looking for a gym in St Helens.</p>
+    </div>
+
+    <div class="review-card fade-in delay-2">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#EA4335;">TM</div>
+          <div>
+            <p class="review-name">Tom M.</p>
+            <p class="review-date">1 month ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Local man's gym, great place to work out. Simple, no nonsense — everything you need. Staff were really friendly. Solid knowledge and machines for both beginners and experienced lifters.</p>
+    </div>
+
+    <div class="review-card fade-in delay-1">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#FBBC05;color:#111;">RH</div>
+          <div>
+            <p class="review-name">Rachel H.</p>
+            <p class="review-date">2 months ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Great circuit class on Saturday morning — felt really welcome first time there. The atmosphere is brilliant and everyone is so encouraging. Will definitely be coming back every week!</p>
+    </div>
+
+    <div class="review-card fade-in delay-2">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#4285F4;">DJ</div>
+          <div>
+            <p class="review-name">Dave J.</p>
+            <p class="review-date">3 months ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Great atmosphere and has all the gear you could need. The owner is a great host and really knows his members. A proper community gym — not like one of those big soulless chains.</p>
+    </div>
+
+    <div class="review-card fade-in delay-3">
+      <div class="review-card-top">
+        <div class="review-author">
+          <div class="review-avatar" style="background:#34A853;">KB</div>
+          <div>
+            <p class="review-name">Karen B.</p>
+            <p class="review-date">4 months ago</p>
+          </div>
+        </div>
+        <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      </div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Been a member for years and wouldn't go anywhere else. John and the team are always welcoming and helpful. Best value gym in town — highly recommend to anyone of any fitness level.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <p class="section-label fade-in">Timetable</p>
+  <h2 class="section-title fade-in">Opening<br>Hours</h2>
+  <div class="hours-layout">
+    <div class="hours-table fade-in">
+      <div class="hours-row" id="row-mon">
+        <span class="hours-day">Monday</span>
+        <span class="hours-time">06:00 – 21:00</span>
+      </div>
+      <div class="hours-row" id="row-tue">
+        <span class="hours-day">Tuesday</span>
+        <span class="hours-time">06:00 – 21:00</span>
+      </div>
+      <div class="hours-row" id="row-wed">
+        <span class="hours-day">Wednesday</span>
+        <span class="hours-time">06:00 – 21:00</span>
+      </div>
+      <div class="hours-row" id="row-thu">
+        <span class="hours-day">Thursday</span>
+        <span class="hours-time">06:00 – 21:00</span>
+      </div>
+      <div class="hours-row" id="row-fri">
+        <span class="hours-day">Friday</span>
+        <span class="hours-time">06:00 – 20:30</span>
+      </div>
+      <div class="hours-row" id="row-sat">
+        <span class="hours-day">Saturday <em style="font-size:0.72rem;color:var(--accent);font-style:normal;">★ Circuit 7:30am</em></span>
+        <span class="hours-time">08:30 – 15:00</span>
+      </div>
+      <div class="hours-row" id="row-sun">
+        <span class="hours-day">Sunday</span>
+        <span class="hours-time">08:30 – 14:00</span>
+      </div>
+      <div class="hours-row">
+        <span class="hours-day" style="color:var(--muted);">Bank Holidays</span>
+        <span class="hours-time" style="color:var(--muted);">08:30 – 14:00</span>
+      </div>
+    </div>
+    <div class="info-cards fade-in delay-2">
+      <div class="info-card" style="padding:0;overflow:hidden;">
+        <div style="padding:1.4rem 1.8rem 1rem;">
+          <span class="info-card-icon">📍</span>
+          <h4>Find Us</h4>
+          <p style="margin-bottom:0.8rem;">Roundwood Drive, St Helens, Merseyside WA9 5JD<br>Just off the St Helens Linkway, next to Screwfix.</p>
+        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.3!2d-2.7361!3d53.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b71e6db460bed%3A0x726eb698155424c!2sFitness%20500!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
+          width="100%"
+          height="200"
+          style="border:0;display:block;filter:grayscale(1) invert(0.9) contrast(0.85);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Fitness 500 location map">
+        </iframe>
+        <div style="padding:0.8rem 1.8rem;">
+          <a href="https://maps.google.com/?q=Fitness+500,+Roundwood+Drive,+St+Helens,+WA9+5JD" target="_blank" style="color:var(--accent);font-size:0.8rem;font-weight:600;letter-spacing:0.5px;">Open in Google Maps →</a>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">📞</span>
+        <h4>Get in Touch</h4>
+        <p>
+          <a href="tel:01744755334" style="color:var(--accent);font-weight:700;font-size:1.1rem;display:block;margin-bottom:0.6rem;">01744 755 334</a>
+          Don't hesitate to call or pop in for a chat with John or any member of the team. We're always happy to help.
+        </p>
+      </div>
+      <div class="info-card">
+        <span class="info-card-icon">📘</span>
+        <h4>Stay Connected</h4>
+        <p>Follow us on Facebook for news, offers and class updates.</p>
+        <a href="https://www.facebook.com/Fitness.500.St.Helens" target="_blank" style="color:var(--accent);font-weight:600;font-size:0.88rem;display:inline-block;margin-top:0.6rem;">
+          facebook.com/Fitness.500.St.Helens →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip" id="contact">
+  <h2>Ready to Start?</h2>
+  <p>No nonsense, no hard sell — just a great local gym. Give us a call or pop in.</p>
+  <a href="tel:01744755334" class="btn-white">Call 01744 755 334</a>
+  <span class="cta-strip-extra">Or visit us: Roundwood Drive, St Helens, Merseyside WA9 5JD</span>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo"><span style="color:#ffffff;">Fitness</span><span style="color:var(--accent);font-weight:700;">500</span></span>
+      <p>Your local, friendly community gym in St Helens. Recently refurbished, fully equipped, and always welcoming — from complete beginners to advanced athletes.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/Fitness.500.St.Helens" target="_blank" class="social-btn" aria-label="Facebook">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#features">About</a></li>
+        <li><a href="#zones">Facilities</a></li>
+        <li><a href="#memberships">Memberships</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#hours">Opening Hours</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:01744755334">01744 755 334</a></li>
+        <li>Roundwood Drive</li>
+        <li>St Helens</li>
+        <li>Merseyside WA9 5JD</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Fitness 500. All rights reserved.</p>
+    <p>Roundwood Drive, St Helens WA9 5JD &nbsp;·&nbsp; <a href="tel:01744755334">01744 755 334</a></p>
+  </div>
+</footer>
+
+<script>
+// Popular times day switcher
+function showDay(day, btn) {
+  document.querySelectorAll('.pt-chart').forEach(c => c.classList.add('hidden'));
+  document.querySelectorAll('.pt-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('pt-' + day).classList.remove('hidden');
+  btn.classList.add('active');
+}
+// Auto-select today
+const ptDays = ['sun','mon','tue','wed','thu','fri','sat'];
+const todayPt = ptDays[new Date().getDay()];
+const ptTodayChart = document.getElementById('pt-' + todayPt);
+const ptTabs = document.querySelectorAll('.pt-tab');
+if (ptTodayChart) {
+  document.querySelectorAll('.pt-chart').forEach(c => c.classList.add('hidden'));
+  ptTabs.forEach(t => t.classList.remove('active'));
+  ptTodayChart.classList.remove('hidden');
+  const dayIndex = ptDays.indexOf(todayPt);
+  // sat=5th tab(index 5), sun=6th(index 6) in Mon-Sun order
+  const tabOrder = ['mon','tue','wed','thu','fri','sat','sun'];
+  const tabIdx = tabOrder.indexOf(todayPt);
+  if (ptTabs[tabIdx]) ptTabs[tabIdx].classList.add('active');
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu toggle
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Highlight today's hours row
+const dayIds = ['row-sun','row-mon','row-tue','row-wed','row-thu','row-fri','row-sat'];
+const todayRow = document.getElementById(dayIds[new Date().getDay()]);
+if (todayRow) {
+  todayRow.classList.add('today');
+  const daySpan = todayRow.querySelector('.hours-day');
+  if (daySpan) {
+    const tag = document.createElement('span');
+    tag.className = 'today-tag';
+    tag.textContent = 'Today';
+    daySpan.appendChild(tag);
+  }
+}
+</script>
+</body>
+</html>
