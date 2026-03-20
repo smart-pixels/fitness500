@@ -501,10 +501,6 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   padding-top:1rem;
 }
 .pt-note strong { color:var(--text); }
-@media(max-width:600px) {
-  .pt-bars { gap:3px; height:110px; }
-  .pt-bar-wrap span { font-size:0.55rem; }
-}
 
 /* ===================== ZONES ===================== */
 .zones { padding:7rem 5%; position:relative; background:var(--black); }
@@ -590,13 +586,6 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   padding:0.25rem 0.6rem;
   border-radius:2px;
   z-index:2;
-}
-@media(max-width:768px) {
-  .photo-grid { grid-template-columns:1fr 1fr; }
-  .photo-tile.tall { grid-row:span 1; }
-}
-@media(max-width:480px) {
-  .photo-grid { grid-template-columns:1fr; }
 }
 
 /* ===================== MEMBERSHIPS ===================== */
@@ -814,7 +803,6 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
 }
 .ladies-block p { font-size:0.8rem; color:var(--muted); }
 
-/* ===================== TESTIMONIALS ===================== */
 /* ===================== GOOGLE REVIEWS ===================== */
 .reviews { padding:7rem 5%; background:var(--dark); }
 .reviews-header {
@@ -828,17 +816,15 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
 .reviews-summary {
   display:flex;
   align-items:center;
-  gap:2rem;
   background:var(--card);
   border:1px solid var(--border);
   border-radius:8px;
   padding:1.8rem 2.2rem;
   flex-wrap:wrap;
   gap:1.5rem;
+  margin-bottom:2.5rem;
 }
-.reviews-score {
-  text-align:center;
-}
+.reviews-score { text-align:center; }
 .reviews-score-num {
   font-family:'Barlow Condensed', sans-serif;
   font-size:4rem;
@@ -854,10 +840,7 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   display:block;
   margin:0.3rem 0;
 }
-.reviews-score-count {
-  font-size:0.78rem;
-  color:var(--muted);
-}
+.reviews-score-count { font-size:0.78rem; color:var(--muted); }
 .reviews-bars {
   flex:1;
   min-width:180px;
@@ -880,12 +863,7 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   border-radius:3px;
   overflow:hidden;
 }
-.review-bar-fill {
-  height:100%;
-  background:#fbbc04;
-  border-radius:3px;
-  transition:width 1s ease;
-}
+.review-bar-fill { height:100%; background:#fbbc04; border-radius:3px; }
 .google-badge {
   display:flex;
   flex-direction:column;
@@ -914,7 +892,6 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   letter-spacing:1px;
   text-transform:uppercase;
   transition:all 0.2s;
-  text-decoration:none;
 }
 .reviews-write:hover { border-color:var(--accent); color:var(--accent); }
 .reviews-grid {
@@ -928,7 +905,6 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   border-radius:8px;
   padding:1.6rem;
   transition:border-color 0.25s, transform 0.25s;
-  position:relative;
 }
 .review-card:hover { border-color:rgba(251,188,4,0.4); transform:translateY(-3px); }
 .review-card-top {
@@ -937,31 +913,22 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
   justify-content:space-between;
   margin-bottom:1rem;
 }
-.review-author {
-  display:flex;
-  align-items:center;
-  gap:0.7rem;
-}
+.review-author { display:flex; align-items:center; gap:0.7rem; }
 .review-avatar {
   width:38px; height:38px;
   border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   font-family:'Barlow Condensed', sans-serif;
   font-weight:700;
-  font-size:1rem;
+  font-size:0.95rem;
   color:#fff;
   flex-shrink:0;
-  font-size:0.95rem;
 }
 .review-name { font-size:0.88rem; font-weight:600; color:var(--text); }
 .review-date { font-size:0.72rem; color:var(--muted); margin-top:0.1rem; }
 .review-google-icon { flex-shrink:0; opacity:0.6; }
 .review-stars { color:#fbbc04; font-size:0.9rem; letter-spacing:1px; margin-bottom:0.8rem; }
 .review-text { font-size:0.88rem; color:var(--muted); line-height:1.7; }
-@media(max-width:600px) {
-  .reviews-summary { flex-direction:column; align-items:flex-start; }
-  .reviews-grid { grid-template-columns:1fr; }
-}
 
 /* ===================== HOURS ===================== */
 .hours { padding:7rem 5%; background:var(--black); }
@@ -1075,7 +1042,6 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   margin-bottom:3rem;
 }
 .footer-logo { font-family:'Barlow Condensed', sans-serif; font-size:2rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; color:var(--white); margin-bottom:1rem; display:block; }
-.footer-logo span { color:var(--accent); }
 .footer-brand p { font-size:0.88rem; color:var(--muted); line-height:1.7; max-width:280px; margin-bottom:1.5rem; }
 .footer-social { display:flex; gap:0.8rem; }
 .social-btn {
@@ -1126,29 +1092,19 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   .photo-tile.tall { grid-row:span 1; height:220px; }
   .photo-tile[style*="grid-column"] { grid-column:auto !important; }
   .features-grid { grid-template-columns:1fr 1fr; }
-  .testi-grid, .reviews-grid { grid-template-columns:1fr 1fr; }
+  .reviews-grid { grid-template-columns:1fr 1fr; }
   .pt-bars { gap:4px; }
-  .zones-grid { grid-template-columns:repeat(3, 1fr); }
 }
 @media(max-width:600px) {
-  /* Typography */
   .hero h1 { font-size:3rem; letter-spacing:-1px; }
   .section-title { font-size:2.2rem; }
-
-  /* Hero */
   .hero { padding:90px 5% 60px; }
   .hero-bg::after { display:none; }
   .hero-btns { flex-direction:column; }
   .hero-btns .btn-primary, .hero-btns .btn-ghost { text-align:center; }
-
-  /* Nav */
   nav { padding:0 4%; }
-
-  /* Sections padding */
   .features, .zones, .memberships, .classes, .ladies,
-  .testimonials, .reviews, .hours, .popular-times { padding:4rem 4%; }
-
-  /* Grids → single column */
+  .reviews, .hours, .popular-times { padding:4rem 4%; }
   .photo-grid { grid-template-columns:1fr; grid-template-rows:none; }
   .photo-tile { height:200px; }
   .photo-tile.tall { grid-row:span 1; height:200px; }
@@ -1157,28 +1113,18 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   .plans-grid { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr; }
   .ladies-visual { grid-template-columns:1fr; }
-  .testi-grid, .reviews-grid { grid-template-columns:1fr; }
+  .reviews-grid { grid-template-columns:1fr; }
   .features-header { flex-direction:column; align-items:flex-start; }
-
-  /* Popular times */
   .pt-bars { gap:3px; height:100px; }
   .pt-bar-wrap span { font-size:0.55rem; }
   .pt-day-tabs { gap:0.3rem; }
   .pt-tab { padding:0.4rem 0.7rem; font-size:0.75rem; }
-
-  /* CTA */
   .cta-strip { padding:4rem 4%; }
   .cta-strip::before { display:none; }
   .cta-strip h2 { font-size:2.2rem; }
-
-  /* Reviews summary */
   .reviews-summary { flex-direction:column; align-items:flex-start; gap:1.2rem; }
   .reviews-header { flex-direction:column; align-items:flex-start; gap:1rem; }
-
-  /* Hours */
   .hours-row { padding:0.8rem 1rem; }
-
-  /* Footer */
   .footer-bottom { flex-direction:column; text-align:center; gap:0.5rem; }
 }
 @media(max-width:380px) {
@@ -1312,261 +1258,96 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   </div>
 </section>
 
-<!-- POPULAR TIMES -->
-<section class="popular-times">
-  <p class="section-label fade-in">Live Insights</p>
-  <h2 class="section-title fade-in">Popular<br>Times</h2>
-  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;margin-bottom:2.5rem;">Plan your visit around quieter periods or join the buzz at peak hours. Based on typical weekly patterns.</p>
-
-  <div class="pt-days fade-in">
-    <div class="pt-day-tabs">
-      <button class="pt-tab active" onclick="showDay('mon',this)">Mon</button>
-      <button class="pt-tab" onclick="showDay('tue',this)">Tue</button>
-      <button class="pt-tab" onclick="showDay('wed',this)">Wed</button>
-      <button class="pt-tab" onclick="showDay('thu',this)">Thu</button>
-      <button class="pt-tab" onclick="showDay('fri',this)">Fri</button>
-      <button class="pt-tab" onclick="showDay('sat',this)">Sat</button>
-      <button class="pt-tab" onclick="showDay('sun',this)">Sun</button>
-    </div>
-
-    <!-- MON -->
-    <div class="pt-chart" id="pt-mon">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>6am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:90%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>6pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>8pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
-    </div>
-
-    <!-- TUE -->
-    <div class="pt-chart hidden" id="pt-tue">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>6pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>8pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
-    </div>
-
-    <!-- WED -->
-    <div class="pt-chart hidden" id="pt-wed">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>6pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>8pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
-    </div>
-
-    <!-- THU -->
-    <div class="pt-chart hidden" id="pt-thu">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:88%"></div><span>6pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>7pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>8pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
-    </div>
-
-    <!-- FRI -->
-    <div class="pt-chart hidden" id="pt-fri">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>3pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>5pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>6pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>7pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>8pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>4–5pm</strong></p>
-    </div>
-
-    <!-- SAT -->
-    <div class="pt-chart hidden" id="pt-sat">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>7am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>1pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:10%"></div><span>2pm</span></div>
-      </div>
-      <p class="pt-note">Busiest for <strong>Circuit Class at 7:30am</strong> · Closes 3pm</p>
-    </div>
-
-    <!-- SUN -->
-    <div class="pt-chart hidden" id="pt-sun">
-      <div class="pt-bars">
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>8am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>9am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>10am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>11am</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>12pm</span></div>
-        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:15%"></div><span>1pm</span></div>
-      </div>
-      <p class="pt-note">Usually busiest around <strong>9am</strong> · Closes 2pm</p>
-    </div>
-  </div>
-</section>
-
 <!-- ZONES -->
 <section class="zones" id="zones">
   <p class="section-label fade-in">Facilities</p>
   <h2 class="section-title fade-in">5 Dedicated<br>Training Zones</h2>
   <p class="fade-in" style="color:var(--muted);max-width:500px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;">Everything under one roof. Burn calories, build strength, or train in a comfortable private space — we have the zone for it.</p>
-
   <div class="photo-grid fade-in">
-
-    <!-- Tile 1: Gym Floor — tall left column -->
     <div class="photo-tile tall">
       <span class="photo-tile-tag">The Gym</span>
-      <img
-        src="fitness-500_3175.JPG"
-        alt="Fitness 500 gym floor"
-        loading="lazy"
-      />
+      <img src="fitness-500_3175.JPG" alt="Fitness 500 gym floor" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Fitness 500 Gym</h3>
         <p>Fully refurbished with the latest equipment</p>
       </div>
     </div>
-
-    <!-- Tile 2: Resistance Machines — top middle -->
     <div class="photo-tile">
       <span class="photo-tile-tag">Zone 1</span>
-      <img
-        src="fitness-500_3322.jpg"
-        alt="Resistance machines"
-        loading="lazy"
-      />
+      <img src="fitness-500_3322.jpg" alt="Resistance machines" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Resistance Machines</h3>
         <p>Full range of cable &amp; pin-loaded machines</p>
       </div>
     </div>
-
-    <!-- Tile 3: Free Weights & Resistance — top right -->
     <div class="photo-tile">
       <span class="photo-tile-tag">Zone 2</span>
-      <img
-        src="fitness-500_3296.JPG"
-        alt="Resistance machines and free weights"
-        loading="lazy"
-      />
+      <img src="fitness-500_3296.JPG" alt="Resistance machines and free weights" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Free Weights Zone</h3>
         <p>Dumbbells, barbells &amp; benches</p>
       </div>
     </div>
-
-    <!-- Tile 4: Spin Bikes — bottom middle -->
     <div class="photo-tile">
       <span class="photo-tile-tag">Zone 3</span>
-      <img
-        src="fitness-500_3182.JPG"
-        alt="Spin bikes"
-        loading="lazy"
-      />
+      <img src="fitness-500_3182.JPG" alt="Spin bikes" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Spin Bikes</h3>
         <p>Dedicated spinning area for intense cardio sessions</p>
       </div>
     </div>
-
-    <!-- Tile 5: Ladies Only — tall right column -->
     <div class="photo-tile tall">
       <span class="photo-tile-tag" style="background:#a855f7;">Ladies Only</span>
-      <img
-        src="fitness-500_3179.JPG"
-        alt="Ladies only fitness zone"
-        loading="lazy"
-      />
+      <img src="fitness-500_3179.JPG" alt="Ladies only fitness zone" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Ladies Only Zone</h3>
         <p>Exclusively for female members — comfortable &amp; private</p>
       </div>
     </div>
-
-    <!-- Tile 6: Circuit Training — bottom middle -->
     <div class="photo-tile" style="grid-column:2/3;">
       <span class="photo-tile-tag">Classes</span>
-      <img
-        src="fitness-500_3169.JPG"
-        alt="High-intensity circuit training class"
-        loading="lazy"
-      />
+      <img src="fitness-500_3169.JPG" alt="High-intensity circuit training class" loading="lazy"/>
       <div class="photo-tile-overlay"></div>
       <div class="photo-tile-label">
         <h3>Circuit Training</h3>
         <p>Saturday 7:30am — non-members welcome!</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- LADIES ZONE -->
+<section class="ladies">
+  <div class="ladies-inner">
+    <div class="ladies-text fade-in">
+      <p class="section-label">Women's Fitness</p>
+      <h2 class="section-title">Ladies Only<br>Fitness Zone</h2>
+      <p>We're proud to be one of very few gyms in St Helens to offer a fully dedicated ladies-only fitness area. Train on your terms, in a space designed with your comfort in mind.</p>
+      <p>Equipped with cardio machines, resistance equipment and everything you need for a full workout — completely private and exclusively for female members.</p>
+      <span class="ladies-tag">✦ Exclusively for Female Members</span>
+    </div>
+    <div class="ladies-visual fade-in delay-2">
+      <div class="ladies-block full">
+        <span class="ladies-block-icon">🔒</span>
+        <h4>Fully Private Zone</h4>
+        <p>A completely separated area just for women — comfortable, safe, and supportive from day one.</p>
+      </div>
+      <div class="ladies-block">
+        <span class="ladies-block-icon">🚴</span>
+        <h4>Cardio Equipment</h4>
+        <p>Bikes, treadmills &amp; more inside the zone.</p>
+      </div>
+      <div class="ladies-block">
+        <span class="ladies-block-icon">🏋️</span>
+        <h4>Resistance Machines</h4>
+        <p>Tone and build at your own pace.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1617,7 +1398,6 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   <div class="classes-layout">
     <div class="class-visual fade-in">
       <div class="class-image-box">
-        <!-- Illustrated barbell SVG icon as placeholder -->
         <svg viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="10" y="34" width="100" height="12" rx="6" stroke="currentColor" stroke-width="3"/>
           <rect x="2" y="26" width="14" height="28" rx="4" stroke="currentColor" stroke-width="3"/>
@@ -1644,32 +1424,144 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   </div>
 </section>
 
-<!-- LADIES ZONE -->
-<section class="ladies">
-  <div class="ladies-inner">
-    <div class="ladies-text fade-in">
-      <p class="section-label">Women's Fitness</p>
-      <h2 class="section-title">Ladies Only<br>Fitness Zone</h2>
-      <p>We're proud to be one of very few gyms in St Helens to offer a fully dedicated ladies-only fitness area. Train on your terms, in a space designed with your comfort in mind.</p>
-      <p>Equipped with cardio machines, resistance equipment and everything you need for a full workout — completely private and exclusively for female members.</p>
-      <span class="ladies-tag">✦ Exclusively for Female Members</span>
+<!-- POPULAR TIMES -->
+<section class="popular-times">
+  <p class="section-label fade-in">Live Insights</p>
+  <h2 class="section-title fade-in">Popular<br>Times</h2>
+  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;margin-bottom:2.5rem;">Plan your visit around quieter periods or join the buzz at peak hours. Based on typical weekly patterns.</p>
+  <div class="pt-days fade-in">
+    <div class="pt-day-tabs">
+      <button class="pt-tab active" onclick="showDay('mon',this)">Mon</button>
+      <button class="pt-tab" onclick="showDay('tue',this)">Tue</button>
+      <button class="pt-tab" onclick="showDay('wed',this)">Wed</button>
+      <button class="pt-tab" onclick="showDay('thu',this)">Thu</button>
+      <button class="pt-tab" onclick="showDay('fri',this)">Fri</button>
+      <button class="pt-tab" onclick="showDay('sat',this)">Sat</button>
+      <button class="pt-tab" onclick="showDay('sun',this)">Sun</button>
     </div>
-    <div class="ladies-visual fade-in delay-2">
-      <div class="ladies-block full">
-        <span class="ladies-block-icon">🔒</span>
-        <h4>Fully Private Zone</h4>
-        <p>A completely separated area just for women — comfortable, safe, and supportive from day one.</p>
+    <div class="pt-chart" id="pt-mon">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:90%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>8pm</span></div>
       </div>
-      <div class="ladies-block">
-        <span class="ladies-block-icon">🚴</span>
-        <h4>Cardio Equipment</h4>
-        <p>Bikes, treadmills &amp; more inside the zone.</p>
+      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
+    </div>
+    <div class="pt-chart hidden" id="pt-tue">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>8pm</span></div>
       </div>
-      <div class="ladies-block">
-        <span class="ladies-block-icon">🏋️</span>
-        <h4>Resistance Machines</h4>
-        <p>Tone and build at your own pace.</p>
+      <p class="pt-note">Usually busiest around <strong>5–6pm</strong></p>
+    </div>
+    <div class="pt-chart hidden" id="pt-wed">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>8pm</span></div>
       </div>
+      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
+    </div>
+    <div class="pt-chart hidden" id="pt-thu">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:65%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:25%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:88%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>5pm</strong></p>
+    </div>
+    <div class="pt-chart hidden" id="pt-fri">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>6am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:85%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:55%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:40%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>2pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>3pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>4pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>5pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:70%"></div><span>6pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>7pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>8pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>4–5pm</strong></p>
+    </div>
+    <div class="pt-chart hidden" id="pt-sat">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>7am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:95%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:80%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:60%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:45%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:35%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:20%"></div><span>1pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:10%"></div><span>2pm</span></div>
+      </div>
+      <p class="pt-note">Busiest for <strong>Circuit Class at 7:30am</strong> · Closes 3pm</p>
+    </div>
+    <div class="pt-chart hidden" id="pt-sun">
+      <div class="pt-bars">
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:90%"></div><span>8am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar peak" style="--h:100%"></div><span>9am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:75%"></div><span>10am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:50%"></div><span>11am</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:30%"></div><span>12pm</span></div>
+        <div class="pt-bar-wrap"><div class="pt-bar" style="--h:15%"></div><span>1pm</span></div>
+      </div>
+      <p class="pt-note">Usually busiest around <strong>9am</strong> · Closes 2pm</p>
     </div>
   </div>
 </section>
@@ -1686,9 +1578,7 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
       Write a Review
     </a>
   </div>
-
-  <!-- Score Summary -->
-  <div class="reviews-summary fade-in" style="margin-bottom:2.5rem;">
+  <div class="reviews-summary fade-in">
     <div class="reviews-score">
       <span class="reviews-score-num">4.8</span>
       <span class="reviews-score-stars">★★★★★</span>
@@ -1702,7 +1592,6 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
       <div class="review-bar-row"><span>1</span><div class="review-bar-track"><div class="review-bar-fill" style="width:1%"></div></div></div>
     </div>
     <div class="google-badge">
-      <!-- Google G logo SVG -->
       <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
         <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
         <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
@@ -1712,100 +1601,73 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
       <span>Google</span>
     </div>
   </div>
-
-  <!-- Review Cards -->
   <div class="reviews-grid">
-
     <div class="review-card fade-in">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#4285F4;">GS</div>
-          <div>
-            <p class="review-name">Gary S.</p>
-            <p class="review-date">2 weeks ago</p>
-          </div>
+          <div><p class="review-name">Gary S.</p><p class="review-date">2 weeks ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Excellent gym. Easily the best in St Helens. Great staff, great community feel. Has all the gear you could need and the owner really knows his members. A great motivator.</p>
     </div>
-
     <div class="review-card fade-in delay-1">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#34A853;">CW</div>
-          <div>
-            <p class="review-name">Claire W.</p>
-            <p class="review-date">1 month ago</p>
-          </div>
+          <div><p class="review-name">Claire W.</p><p class="review-date">1 month ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Great gym, friendly staff and members. It has a brilliant women's section too which was exactly what I needed. Fully recommend to anyone looking for a gym in St Helens.</p>
     </div>
-
     <div class="review-card fade-in delay-2">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#EA4335;">TM</div>
-          <div>
-            <p class="review-name">Tom M.</p>
-            <p class="review-date">1 month ago</p>
-          </div>
+          <div><p class="review-name">Tom M.</p><p class="review-date">1 month ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Local man's gym, great place to work out. Simple, no nonsense — everything you need. Staff were really friendly. Solid knowledge and machines for both beginners and experienced lifters.</p>
     </div>
-
     <div class="review-card fade-in delay-1">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#FBBC05;color:#111;">RH</div>
-          <div>
-            <p class="review-name">Rachel H.</p>
-            <p class="review-date">2 months ago</p>
-          </div>
+          <div><p class="review-name">Rachel H.</p><p class="review-date">2 months ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Great circuit class on Saturday morning — felt really welcome first time there. The atmosphere is brilliant and everyone is so encouraging. Will definitely be coming back every week!</p>
     </div>
-
     <div class="review-card fade-in delay-2">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#4285F4;">DJ</div>
-          <div>
-            <p class="review-name">Dave J.</p>
-            <p class="review-date">3 months ago</p>
-          </div>
+          <div><p class="review-name">Dave J.</p><p class="review-date">3 months ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Great atmosphere and has all the gear you could need. The owner is a great host and really knows his members. A proper community gym — not like one of those big soulless chains.</p>
     </div>
-
     <div class="review-card fade-in delay-3">
       <div class="review-card-top">
         <div class="review-author">
           <div class="review-avatar" style="background:#34A853;">KB</div>
-          <div>
-            <p class="review-name">Karen B.</p>
-            <p class="review-date">4 months ago</p>
-          </div>
+          <div><p class="review-name">Karen B.</p><p class="review-date">4 months ago</p></div>
         </div>
         <svg class="review-google-icon" viewBox="0 0 48 48" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       </div>
       <div class="review-stars">★★★★★</div>
       <p class="review-text">Been a member for years and wouldn't go anywhere else. John and the team are always welcoming and helpful. Best value gym in town — highly recommend to anyone of any fitness level.</p>
     </div>
-
   </div>
 </section>
 
@@ -1815,34 +1677,16 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   <h2 class="section-title fade-in">Opening<br>Hours</h2>
   <div class="hours-layout">
     <div class="hours-table fade-in">
-      <div class="hours-row" id="row-mon">
-        <span class="hours-day">Monday</span>
-        <span class="hours-time">06:00 – 21:00</span>
-      </div>
-      <div class="hours-row" id="row-tue">
-        <span class="hours-day">Tuesday</span>
-        <span class="hours-time">06:00 – 21:00</span>
-      </div>
-      <div class="hours-row" id="row-wed">
-        <span class="hours-day">Wednesday</span>
-        <span class="hours-time">06:00 – 21:00</span>
-      </div>
-      <div class="hours-row" id="row-thu">
-        <span class="hours-day">Thursday</span>
-        <span class="hours-time">06:00 – 21:00</span>
-      </div>
-      <div class="hours-row" id="row-fri">
-        <span class="hours-day">Friday</span>
-        <span class="hours-time">06:00 – 20:30</span>
-      </div>
+      <div class="hours-row" id="row-mon"><span class="hours-day">Monday</span><span class="hours-time">06:00 – 21:00</span></div>
+      <div class="hours-row" id="row-tue"><span class="hours-day">Tuesday</span><span class="hours-time">06:00 – 21:00</span></div>
+      <div class="hours-row" id="row-wed"><span class="hours-day">Wednesday</span><span class="hours-time">06:00 – 21:00</span></div>
+      <div class="hours-row" id="row-thu"><span class="hours-day">Thursday</span><span class="hours-time">06:00 – 21:00</span></div>
+      <div class="hours-row" id="row-fri"><span class="hours-day">Friday</span><span class="hours-time">06:00 – 20:30</span></div>
       <div class="hours-row" id="row-sat">
         <span class="hours-day">Saturday <em style="font-size:0.72rem;color:var(--accent);font-style:normal;">★ Circuit 7:30am</em></span>
         <span class="hours-time">08:30 – 15:00</span>
       </div>
-      <div class="hours-row" id="row-sun">
-        <span class="hours-day">Sunday</span>
-        <span class="hours-time">08:30 – 14:00</span>
-      </div>
+      <div class="hours-row" id="row-sun"><span class="hours-day">Sunday</span><span class="hours-time">08:30 – 14:00</span></div>
       <div class="hours-row">
         <span class="hours-day" style="color:var(--muted);">Bank Holidays</span>
         <span class="hours-time" style="color:var(--muted);">08:30 – 14:00</span>
@@ -1857,12 +1701,9 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
         </div>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.3!2d-2.7361!3d53.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b71e6db460bed%3A0x726eb698155424c!2sFitness%20500!5e0!3m2!1sen!2suk!4v1700000000000!5m2!1sen!2suk"
-          width="100%"
-          height="200"
+          width="100%" height="200"
           style="border:0;display:block;filter:grayscale(1) invert(0.9) contrast(0.85);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
           title="Fitness 500 location map">
         </iframe>
         <div style="padding:0.8rem 1.8rem;">
@@ -1937,14 +1778,12 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
 </footer>
 
 <script>
-// Popular times day switcher
 function showDay(day, btn) {
   document.querySelectorAll('.pt-chart').forEach(c => c.classList.add('hidden'));
   document.querySelectorAll('.pt-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('pt-' + day).classList.remove('hidden');
   btn.classList.add('active');
 }
-// Auto-select today
 const ptDays = ['sun','mon','tue','wed','thu','fri','sat'];
 const todayPt = ptDays[new Date().getDay()];
 const ptTodayChart = document.getElementById('pt-' + todayPt);
@@ -1953,8 +1792,6 @@ if (ptTodayChart) {
   document.querySelectorAll('.pt-chart').forEach(c => c.classList.add('hidden'));
   ptTabs.forEach(t => t.classList.remove('active'));
   ptTodayChart.classList.remove('hidden');
-  const dayIndex = ptDays.indexOf(todayPt);
-  // sat=5th tab(index 5), sun=6th(index 6) in Mon-Sun order
   const tabOrder = ['mon','tue','wed','thu','fri','sat','sun'];
   const tabIdx = tabOrder.indexOf(todayPt);
   if (ptTabs[tabIdx]) ptTabs[tabIdx].classList.add('active');
@@ -1962,19 +1799,13 @@ if (ptTodayChart) {
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
 });
-
-// Mobile menu toggle
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
-
-// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// Highlight today's hours row
 const dayIds = ['row-sun','row-mon','row-tue','row-wed','row-thu','row-fri','row-sat'];
 const todayRow = document.getElementById(dayIds[new Date().getDay()]);
 if (todayRow) {
