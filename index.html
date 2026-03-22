@@ -592,11 +592,24 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
 .memberships { padding:7rem 5%; background:var(--dark); position:relative; overflow:hidden; }
 .plans-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns:repeat(2, 1fr);
   gap:1.5rem;
   margin-top:3.5rem;
   align-items:start;
 }
+.plans-section-label {
+  font-family:'Barlow Condensed', sans-serif;
+  font-size:0.72rem;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--muted);
+  grid-column:1/-1;
+  padding:0.5rem 0 0.2rem;
+  border-top:1px solid var(--border);
+  margin-top:0.5rem;
+}
+.plans-section-label:first-child { border-top:none; margin-top:0; }
 .plan-card {
   background:var(--card);
   border:1px solid var(--border);
@@ -1111,6 +1124,7 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
   .photo-tile[style*="grid-column"] { grid-column:auto !important; }
   .features-grid { grid-template-columns:1fr; }
   .plans-grid { grid-template-columns:1fr; }
+  .plans-section-label { grid-column:1; }
   .footer-grid { grid-template-columns:1fr; }
   .ladies-visual { grid-template-columns:1fr; }
   .reviews-grid { grid-template-columns:1fr; }
@@ -1355,14 +1369,24 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
 <section class="memberships" id="memberships">
   <p class="section-label fade-in">Pricing</p>
   <h2 class="section-title fade-in">Simple,<br>Honest Pricing</h2>
-  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;">No hidden fees, no confusing tiers. Just great value gym membership. Call us or pop in to discuss the right plan for you.</p>
+  <p class="fade-in" style="color:var(--muted);max-width:480px;font-size:0.95rem;line-height:1.7;margin-top:0.5rem;">No hidden fees, no confusing tiers. Cash or card accepted. Call us or pop in to get started.</p>
   <div class="plans-grid">
+
+    <!-- 11-month contract label -->
+    <p class="plans-section-label fade-in">11 Month Contract</p>
+
+    <!-- 11-month single -->
     <div class="plan-card featured fade-in">
       <div class="plan-badge">Most Popular</div>
-      <p class="plan-name">Full Membership</p>
-      <p class="plan-price">£210<span>&ensp;/ one off payment</span></p>
-      <p class="plan-desc" style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border);"><span style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text);margin-bottom:0.3rem;">Pay Monthly</span><strong style="color:var(--text);">£19.99 / month for 12 months</strong>.</p>
-      <p class="plan-desc">Our best-value option. Unlimited access 7 days a week with every perk included.</p>
+      <p class="plan-name">Single Membership</p>
+      <div style="margin:1rem 0 0.4rem;">
+        <span style="font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">First Payment</span>
+        <p class="plan-price" style="margin-top:0.2rem;">£31.99</p>
+      </div>
+      <div style="padding:0.8rem 0 1.2rem;border-bottom:1px solid var(--border);margin-bottom:1.2rem;">
+        <span style="font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Then Monthly</span>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;color:var(--text);line-height:1;margin-top:0.2rem;">£21.99<span style="font-size:0.9rem;font-weight:400;color:var(--muted);"> / month</span></p>
+      </div>
       <ul class="plan-features">
         <li>Unlimited gym access, every day</li>
         <li>All 5 training zones</li>
@@ -1373,11 +1397,19 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
       </ul>
       <a href="tel:01744755334" class="plan-cta">Call to Join Today</a>
     </div>
+
+    <!-- 11-month couples -->
     <div class="plan-card fade-in delay-1">
       <div class="plan-badge" style="background:var(--accent2);color:#111;">Great Savings</div>
-      <p class="plan-name">Couple's Membership</p>
-      <p class="plan-price">Better Together<span>&ensp;/ direct debit</span></p>
-      <p class="plan-desc">Train together, save together. Full access for two — the perfect way to keep each other motivated.</p>
+      <p class="plan-name">Couples Membership</p>
+      <div style="margin:1rem 0 0.4rem;">
+        <span style="font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">First Payment</span>
+        <p class="plan-price" style="margin-top:0.2rem;">£46.99</p>
+      </div>
+      <div style="padding:0.8rem 0 1.2rem;border-bottom:1px solid var(--border);margin-bottom:1.2rem;">
+        <span style="font-size:0.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Then Monthly</span>
+        <p style="font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;color:var(--text);line-height:1;margin-top:0.2rem;">£36.99<span style="font-size:0.9rem;font-weight:400;color:var(--muted);"> / month</span></p>
+      </div>
       <ul class="plan-features">
         <li>Unlimited access for 2 members</li>
         <li>All 5 training zones included</li>
@@ -1388,6 +1420,45 @@ footer { background:#080808; border-top:1px solid var(--border); padding:4rem 5%
       </ul>
       <a href="tel:01744755334" class="plan-cta">Call to Enquire</a>
     </div>
+
+    <!-- Full annual label -->
+    <p class="plans-section-label fade-in delay-1">Full Annual Membership — Cash or Card</p>
+
+    <!-- Annual single -->
+    <div class="plan-card fade-in delay-2">
+      <p class="plan-name">Single Membership</p>
+      <p class="plan-price" style="margin-top:1rem;">£209<span style="font-size:0.95rem;font-weight:400;color:var(--muted);">&ensp;/ full year</span></p>
+      <p class="plan-desc" style="margin-top:0.6rem;">Pay once, train all year. The best value option for committed members — no monthly payments, no hassle.</p>
+      <ul class="plan-features">
+        <li>Unlimited gym access, every day</li>
+        <li>All 5 training zones</li>
+        <li>Saturday circuit class included</li>
+        <li>Ladies only zone</li>
+        <li>Staff advice &amp; support</li>
+        <li>Spin &amp; full cardio suite</li>
+      </ul>
+      <a href="tel:01744755334" class="plan-cta">Call to Join Today</a>
+    </div>
+
+    <!-- Annual couples -->
+    <div class="plan-card fade-in delay-3">
+      <div class="plan-badge" style="background:var(--accent2);color:#111;">Best Value</div>
+      <p class="plan-name">Couples Membership</p>
+      <p class="plan-price" style="margin-top:1rem;">£379<span style="font-size:0.95rem;font-weight:400;color:var(--muted);">&ensp;/ full year</span></p>
+      <p class="plan-desc" style="margin-top:0.6rem;">Train together, save together. Full year access for two — the ultimate way to stay motivated as a pair.</p>
+      <ul class="plan-features">
+        <li>Unlimited access for 2 members</li>
+        <li>All 5 training zones included</li>
+        <li>Saturday circuit class for both</li>
+        <li>Ladies only zone access</li>
+        <li>Staff advice &amp; support</li>
+        <li>Spin &amp; full cardio suite</li>
+      </ul>
+      <a href="tel:01744755334" class="plan-cta">Call to Enquire</a>
+    </div>
+
+
+
   </div>
 </section>
 
