@@ -109,8 +109,8 @@ nav {
   transition:box-shadow 0.3s;
 }
 nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.6); }
-.nav-links a.nav-active { color:var(--white); }
-.nav-links a.nav-active::after {
+.nav-links a.nav-active:not(.btn-nav) { color:var(--white); }
+.nav-links a.nav-active:not(.btn-nav)::after {
   content:'';
   display:block;
   width:100%;
